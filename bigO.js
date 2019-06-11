@@ -14,27 +14,15 @@
 //     by 1 < i < 10 unless it's a prime number, which is unlikely
 
 // 11. Tower of Hanoi
-function TOH(disc, pillars, src, dest, spare) {
-  if(disc === 1) {
-    pillars = move(pillars, src, dest)
-  } 
-  else {
-    TOH(disc - 1, pillars, src, spare, dest)
-    pillars = move(pillars, src, dest)
-    TOH(disc - 1, pillars, spare, dest, src)
+function towerOfHanoi(n, src, des, temp) {
+  if(n >= 1) {
+    towerOfHanoi(n - 1, src, temp, des);
+    console.log(`move disk to ${src} to ${des}`);
+    towerOfHanoi(n - 1, temp, des, src);
   }
-  return pillars
+  return;
 }
-
-function move(pillars, src, dest) {
-  console.log(`Move ${src} to ${dest}`)
-  pillars[dest].unshift(pillars[src].shift())
-  return pillars
-}
-pillars = {'a': [1, 2, 3], 'b': [], 'c': []}
-TOH(3, pillars, 'a', 'c', 'b')
-console.log(pillars)
-
+towerOfHanoi(3, 'A', 'C', 'B');
 
 // 12 iterative versions
 function sheepJump(n) {
@@ -116,7 +104,7 @@ function fib(n) {
 }
 // console.log(fib(7));
 // console.log(fib(8));
-// 14-6: O(n^2), polymonial: ???
+// 14-6: O(n), linear: 
 
 
 function factorial(n) {
@@ -248,7 +236,7 @@ const PrintPath = function (path, startPos, endPos){
   console.log(path);
 }
 //
-// 13-8:
+// 13-8: O(n^2), polynomial
 
 
 const mazeAll = function(labyrinth, position=0, row, col, direction='S',path){
@@ -281,7 +269,7 @@ const mazeAll = function(labyrinth, position=0, row, col, direction='S',path){
   position--;
 }
 // 
-// 13-9: 
+// 13-9: O(n^2), polynomial:
 
 
 function anagrams(prefix, str){
@@ -301,7 +289,7 @@ function printAnagram(word){
   anagrams(' ', word);
 }
 //
-// 13-10: 
+// 13-10: O(2^n), exponential: 
 
 
 let organization = {
@@ -382,7 +370,7 @@ function traverseB(node, indent=0) {
 	}
 }
 //
-// 13-11:
+// 13-11: O(2^n), exponential:
 
 
 function toBinary(num) {
@@ -393,4 +381,4 @@ function toBinary(num) {
   return  toBinary(Math.floor(num/2)) + binary;
 }
 // console.log(toBinary(56));
-// 13-12: 
+// 13-12: O(log(n)), logarithmic: 
